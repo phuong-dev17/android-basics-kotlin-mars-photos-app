@@ -47,8 +47,11 @@ class OverviewViewModel : ViewModel() {
      */
     private fun getMarsPhotos() {
         viewModelScope.launch {
-            _status.value = MarsApi.marsApiService.getPhotos()
+            try {
+                _status.value = MarsApi.marsApiService.getPhotos()
+            } catch (e: Exception) {
+                _status.value = "Failure: ${e.message}"
+            }
         }
-
     }
 }
