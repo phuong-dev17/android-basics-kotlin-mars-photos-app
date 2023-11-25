@@ -47,6 +47,10 @@ class OverviewFragment : Fragment() {
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel
 
+        viewModel.photosData.observe(viewLifecycleOwner) {
+            binding.marsPhotoRecyclerView.adapter = MarsAdapter(it)
+        }
+
         return binding.root
     }
 }
